@@ -1,7 +1,7 @@
 {
   "name": "deploy-contracts",
   "version": "0.0.1",
-  "description": "Script to deploy and interact with smart contracts",
+  "description": "Scripts for deploying smart contracts from local",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
