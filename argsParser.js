@@ -2,7 +2,7 @@ const ArgumentParser = require('argparse').ArgumentParser;
 const parser = new ArgumentParser({
   version : '0.0.1',
   addHelp : true,
-  description : 'Smart Contract Deployment Script'
+  description : 'Deploy/interact with Smart Contract and transfer ETH/Tokens via RPC'
 });
 
 parser.addArgument([ '-k', '--keystore' ], {
