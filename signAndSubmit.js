@@ -1,7 +1,9 @@
-const ethTx = require('ethereumjs-tx');
+const EthTx = require('ethereumjs-tx');
 
-exports = module.exports = async function signAndSubmit(txParams, privateKey, web3) {
-
+exports = module.exports = async function signAndSubmit(
+  txParams,
+  privateKey,
+  web3) {
   assert.ok(txParams.chainId, 'Cannot find chainId in datafile');
 
   const nonce = await web3.eth.getTransactionCount(txParams.from);
@@ -10,16 +12,18 @@ exports = module.exports = async function signAndSubmit(txParams, privateKey, we
     {
       nonce,
       gas: web3.utils.toHex(txParams.gasLimit || 5000000),
-      gasPrice: web3.utils.toHex(txParams.gasPrice || web3.utils.toWei('50', 'gwei')),
+      gasPrice: web3.utils.toHex(
+        txParams.gasPrice || web3.utils.toWei('50', 'gwei')),
       value: web3.utils.toHex(txParams.value || 0),
     });
 
   console.log(`Params:
     ${JSON.stringify(formattedParams)}`);
 
-  const formattedPrivateKey = privateKey.startsWith('0x') ? privateKey.slice(2) : privateKey;
+  const formattedPrivateKey = privateKey.startsWith('0x') ?
+    privateKey.slice(2) : privateKey;
 
-  const tx = new ethTx(formattedParams);
+  const tx = new EthTx(formattedParams);
 
   tx.sign(Buffer.from(formattedPrivateKey, 'hex'));
 
@@ -32,4 +36,4 @@ exports = module.exports = async function signAndSubmit(txParams, privateKey, we
     ${JSON.stringify(txResult)}`);
 
   return txResult;
-}
+};
