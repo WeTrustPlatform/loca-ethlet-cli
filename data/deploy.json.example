@@ -1,0 +1,9 @@
+{
+  "chainId": number,
+  "abi": array,
+  "bytecode": string,
+  "parameters": array,
+  "value": number,
+  "gasLimit": number,
+  "gasPrice": number,
+}
