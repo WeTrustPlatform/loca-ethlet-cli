@@ -1,5 +1,5 @@
 {
-  "name": "loca-ethlet",
+  "name": "loca-ethlet-cli",
   "version": "0.0.1",
   "description": "Scripts for interacting/deploying smart contracts from local",
   "main": "index.js",

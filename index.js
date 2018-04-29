@@ -16,3 +16,5 @@ actionModules.forEach((f) => {
   actions[fileName.split('.')[0]] = require(f);
 });
 
+actions[args.action](args);
+
