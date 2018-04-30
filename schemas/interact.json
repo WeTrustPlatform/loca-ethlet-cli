@@ -1,0 +1,46 @@
+{
+  "$id": "interact",
+  "description": "Schema for the interact.js input",
+  "type": "object",
+  "required": ["contractAddress", "abi", "chainId", "methodName"],
+  "properties": {
+    "contractAddress": {
+      "type": "string",
+      "description": "Address of the smart contract"
+    },
+    "abi": {
+      "type": "array",
+      "description": "Abi of the smart contract",
+      "items": {
+        "type": "object"
+      }
+    },
+    "chainId": {
+      "type": "number",
+      "description": "Network Id. For example: 1 (Mainnet), 4 (Rinkeby)"
+    },
+    "methodName": {
+      "type": "string",
+      "description": "Public method to be called in the smart contract. For example: trasfer(address,uint256)"
+    },
+    "parameters": {
+      "type": "array",
+      "description": "Value(s) to be passed in the method above"
+    },
+    "value": {
+      "type": "string",
+      "description": "Amount of ETH to be sent. String represenation of number. For example: '5000' or '0x1388'",
+      "default": "0x0"
+    },
+    "gasLimit": {
+      "type": "string",
+      "description": "String represenation of number. For example: '5000' or '0x1388'",
+      "default": "5000000"
+    },
+    "gasPrice": {
+      "type": "string",
+      "description": "String represenation of number. For example: '5000' or '0x1388'",
+      "default": "50000000000"
+    }
+  }
+}

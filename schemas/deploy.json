@@ -1,0 +1,42 @@
+{
+  "$id": "deploy",
+  "description": "Schema for the deployment.js input",
+  "type": "object",
+  "required": ["bytecode", "abi", "chainId"],
+  "properties": {
+    "bytecode": {
+      "type": "string",
+      "description": "Bytecode of the smart contract"
+    },
+    "abi": {
+      "type": "array",
+      "description": "Abi of the smart contract",
+      "items": {
+        "type": "object"
+      }
+    },
+    "chainId": {
+      "type": "number",
+      "description": "Network Id. For example: 1 (Mainnet), 4 (Rinkeby)"
+    },
+    "parameters": {
+      "type": "array",
+      "description": "Value(s) to be passed in the constructor"
+    },
+    "value": {
+      "type": "string",
+      "description": "Amount of ETH to be sent. String represenation of number. For example: '5000' or '0x1388'",
+      "default": "0x0"
+    },
+    "gasLimit": {
+      "type": "string",
+      "description": "String represenation of number. For example: '5000' or '0x1388'",
+      "default": "5000000"
+    },
+    "gasPrice": {
+      "type": "string",
+      "description": "String represenation of number. For example: '5000' or '0x1388'",
+      "default": "50000000000"
+    }
+  }
+}
