@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 /**
- * Usage: ethlet -h
+ * Usage: loca-ethlet -h
  */
 
 const parser = require('../lib/argsParser');
@@ -8,5 +8,6 @@ const args = parser.parseArgs();
 
 console.log(`Args: ${JSON.stringify(args)}`);
 
-const Ethlet = require('../index');
-new Ethlet(args).execute();
+const LocaEthlet = require('../index');
+const {keystore, password, web3, action, datafile} = args;
+new LocaEthlet({keystore, password, web3}).execute(action, datafile);

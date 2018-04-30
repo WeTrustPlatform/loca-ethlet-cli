@@ -1,10 +1,14 @@
-const getCredential = require('../lib/getCredential');
+const validator = require('../lib/validators').interact;
 const signAndSubmit = require('../lib/signAndSubmit');
-const Web3 = require('web3');
-const fs = require('fs');
-const assert = require('assert');
 
-exports = module.exports = async function interact(args) {
+exports = module.exports = async function interact(
+  dataFileContent,
+  credential,
+  web3) {
+  if (!validator(dataFileContent)) {
+    throw new Error(JSON.stringify(validator.errors));
+  }
+
   const {
     contractAddress,
     abi,
@@ -14,27 +18,13 @@ exports = module.exports = async function interact(args) {
     methodName,
     value,
     parameters = [],
-  } = JSON.parse(fs.readFileSync(args.datafile, 'utf8'));
-
-  assert.ok(abi, 'Cannot find abi in datafile');
-  assert.ok(contractAddress, 'Cannot find contractAddress in datafile');
-  assert.ok(methodName, 'Cannot find methodName in datafile');
-  assert.ok(chainId, 'Cannot find chainId in datafile');
-
-  const web3 = new Web3(new Web3.providers.HttpProvider(args.rpc));
-
-  const {
-    address: senderAddress,
-    privateKey,
-  } = getCredential(args.keystore, args.password, web3.eth.accounts.decrypt);
+  } = dataFileContent;
 
   const contractInstance = new web3.eth.Contract(abi, contractAddress);
-
   const data = contractInstance.methods[methodName](...parameters).encodeABI();
 
   return signAndSubmit(
     {
-      from: senderAddress,
       to: contractAddress,
       data,
       value,
@@ -42,7 +32,7 @@ exports = module.exports = async function interact(args) {
       gasLimit,
       gasPrice,
     },
-    privateKey,
+    credential,
     web3
   );
 };

@@ -1,6 +1,8 @@
-const path = require('path');
+const fs = require('fs');
 const glob = require('glob');
-const validator = require('./lib/validators').cli;
+const assert = require('assert');
+const validator = require('./lib/validators').locaEthletInit;
+const getCredential = require('../lib/getCredential');
 
 const actions = {};
 let actionModules = glob.sync('./actions/*.js');
@@ -14,11 +16,18 @@ const Ethlet = function Ethlet(options) {
     throw new Error(JSON.stringify(validator.errors));
   }
 
-  this.options = options;
-  this.action = actions[options.action];
+  this.web3 = new Web3(new Web3.providers.HttpProvider(options.rpc));
+  this.credential = getCredential(options.keystore, options.password, web3.eth.accounts.decrypt);
 
-  this.execute = () => {
-    this.action(this.options);
+  this.execute = async (actionName, dataFile) => {
+    assert.ok(
+      !(actionName in actions),
+      `Action '${actionName}' is invalid. Supported actions: ${[...Object.keys(actions)]}`);
+
+    assert.ok(dataFile, `Missing the location of datafile`);
+
+    const dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+    return actions[actionName](dataFileContent, this.credential, this.web3);
   };
 
   return this;

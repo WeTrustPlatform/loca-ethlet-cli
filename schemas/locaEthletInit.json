@@ -1,18 +1,9 @@
 {
-  "$id": "cli",
-  "description": "Schema for the cli args",
+  "$id": "locaEthletInit",
+  "description": "Schema for initialize LocaEthlet instance",
   "type": "object",
-  "required": ["action", "rpc", "datafile", "keystore", "password"],
+  "required": ["rpc", "keystore", "password"],
   "properties": {
-    "action": {
-      "type": "string",
-      "description": "Action to the Ethereum blockchain",
-      "enum": ["deploy", "interact"]
-    },
-    "datafile": {
-      "type": "string",
-      "description": "Location of the input data"
-    },
     "keystore": {
       "type": "string",
       "description": "Location of the keystore.json file"
