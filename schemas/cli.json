@@ -1,0 +1,30 @@
+{
+  "$id": "cli",
+  "description": "Schema for the cli args",
+  "type": "object",
+  "required": ["action", "rpc", "datafile", "keystore", "password"],
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Action to the Ethereum blockchain",
+      "enum": ["deploy", "interact"]
+    },
+    "datafile": {
+      "type": "string",
+      "description": "Location of the input data"
+    },
+    "keystore": {
+      "type": "string",
+      "description": "Location of the keystore.json file"
+    },
+    "password": {
+      "type": "string",
+      "description": "Location of the password file"
+    },
+    "rpc": {
+      "type": "string",
+      "format": "uri",
+      "description": "Address to an Ethereum node using RPC"
+    }
+  }
+}

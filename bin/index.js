@@ -8,6 +8,5 @@ const args = parser.parseArgs();
 
 console.log(`Args: ${JSON.stringify(args)}`);
 
-const actions = require('../index');
-actions[args.action](args);
-
+const Ethlet = require('../index');
+new Ethlet(args).execute();

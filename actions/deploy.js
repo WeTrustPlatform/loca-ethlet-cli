@@ -1,5 +1,5 @@
 const getCredential = require('../lib/getCredential');
-const signAndSubmit = require('./lib/signAndSubmit');
+const signAndSubmit = require('../lib/signAndSubmit');
 const Web3 = require('web3');
 const fs = require('fs');
 const assert = require('assert');
