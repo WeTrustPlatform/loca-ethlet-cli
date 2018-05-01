@@ -3,7 +3,7 @@
   "contractAddress": "0x1Cd41489Ab95997A86FFdE793f93c55388A6d6Fa",
   "methodName": "isOwner(address)",
   "parameters": [
-    "0x1Cd41489Ab95997A86FFdE793f93c55388A6d6Fa"
+    "0xd69d3EF6B055D4Dbd04D83525f2968b875A8366b"
   ],
   "abi": [{
       "constant": true,

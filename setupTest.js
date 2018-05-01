@@ -9,14 +9,13 @@ const server = granche.server({
   ],
 });
 
-const port = 8547;
-server.listen(port, (err, blockchain) => {
+server.listen((err, blockchain) => {
   if (err) throw err;
 
+  const port = server.address().port;
   console.log(`Testrpc is running at port: ${port}`);
 });
 
 exports = module.exports = {
   server,
-  port,
 };

@@ -35,7 +35,8 @@
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/coverage/"
+      "/coverage/",
+      "/bin/"
     ]
   }
 }
