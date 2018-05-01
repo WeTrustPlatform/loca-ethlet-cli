@@ -1,6 +1,6 @@
 {
   "name": "loca-ethlet-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Scripts for interacting/deploying smart contracts from local",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,10 @@
   },
   "author": "Hoang Nguyen",
   "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:WeTrustPlatform/loca-ethlet-cli.git"
+  },
   "dependencies": {
     "ajv": "^6.4.0",
     "argparse": "^1.0.9",

@@ -23,7 +23,7 @@ const Ethlet = function Ethlet(options) {
     assert.ok(dataFile, `Missing the location of datafile`);
 
     const dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
-    return this[actionName.toLowerCase()](dataFileContent, this.credential, this.web3);
+    return Ethlet[actionName.toLowerCase()](dataFileContent, this.credential, this.web3);
   };
 
   this.supportedActions = supportedActions;
@@ -37,7 +37,7 @@ actionModules.forEach((f) => {
   const fileName = path.basename(f);
   const actionName = fileName.split('.')[0].toLowerCase();
   supportedActions.push(actionName);
-  Ethlet.prototype[actionName] = require(f);
+  Ethlet[actionName] = require(f);
 });
 
 exports = module.exports = Ethlet;
