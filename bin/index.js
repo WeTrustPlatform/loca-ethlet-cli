@@ -9,5 +9,5 @@ const args = parser.parseArgs();
 console.log(`Args: ${JSON.stringify(args)}`);
 
 const LocaEthlet = require('../index');
-const {keystore, password, web3, action, datafile} = args;
-new LocaEthlet({keystore, password, web3}).execute(action, datafile);
+const {keystore, password, rpc, action, datafile} = args;
+new LocaEthlet({keystore, password, rpc}).execute(action, datafile);

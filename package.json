@@ -4,7 +4,7 @@
   "description": "Scripts for interacting/deploying smart contracts from local",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint *.js --fix"
   },
   "bin": {
@@ -26,5 +26,8 @@
     "eslint-config-google": "^0.9.1",
     "ganache-cli": "^6.1.0",
     "jest": "^22.4.3"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTest.js"
   }
 }

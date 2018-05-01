@@ -1,4 +1,4 @@
-const granche = require('granche-cli');
+const granche = require('ganache-cli');
 const server = granche.server({
   id: 1,
   accounts: [
@@ -9,6 +9,19 @@ const server = granche.server({
   ],
 });
 
-server.listen(8547, (err, blockchain) => {
+const port = 8547;
+server.listen(port, (err, blockchain) => {
+  if (err) throw err;
 
+  console.log(`Testrpc is running at port: ${port}`);
 });
+
+beforeAll(() => console.log('Jest sets up testrpc'));
+afterAll(() => {
+  console.log('Jest tears down');
+  server.close();
+});
+exports = module.exports = {
+  server,
+  port,
+};
