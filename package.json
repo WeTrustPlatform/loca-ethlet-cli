@@ -28,6 +28,14 @@
     "jest": "^22.4.3"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/setupTest.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTest.js",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/coverage/"
+    ]
   }
 }

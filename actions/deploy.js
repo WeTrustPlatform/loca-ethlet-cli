@@ -13,6 +13,7 @@ exports = module.exports = async function deploy(
     chainId,
     bytecode: rawBytecode,
     abi,
+    value,
     gasPrice,
     gasLimit,
     parameters = [],
