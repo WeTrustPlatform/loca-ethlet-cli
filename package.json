@@ -1,11 +1,12 @@
 {
   "name": "loca-ethlet-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Scripts for interacting/deploying smart contracts from local",
   "main": "index.js",
   "scripts": {
+    "coverage": "coveralls < coverage/lcov.info",
     "test": "jest",
-    "lint": "eslint *.js --fix"
+    "lint": "eslint **/*.js --fix"
   },
   "bin": {
     "loca-ethlet": "bin/index.js"
@@ -26,6 +27,7 @@
     "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
+    "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "ganache-cli": "^6.1.0",

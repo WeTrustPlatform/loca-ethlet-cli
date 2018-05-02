@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/WeTrustPlatform/loca-ethlet-cli.svg?branch=master)](https://travis-ci.org/WeTrustPlatform/loca-ethlet-cli)
+[![Coverage Status](https://coveralls.io/repos/github/WeTrustPlatform/loca-ethlet-cli/badge.svg?branch=master)](https://coveralls.io/github/WeTrustPlatform/loca-ethlet-cli?branch=master)
 
 # loca-ethlet-cli
 
@@ -91,7 +92,24 @@ Datafile's schema for each action:
 - [interact](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/schemas/interact.json)
 - (to be added)
 
-Please refer to [the example datafiles.](https://github.com/WeTrustPlatform/loca-ethlet-cli/tree/master/data)
+
+## Examples
+List of [the example datafiles.](https://github.com/WeTrustPlatform/loca-ethlet-cli/tree/master/data)
+
+**Caveat:** Before you use any of the example files, please double triple check the parameters to make sure you're not accidentally sending TRST to my address :)
+
+```
+loca-ethlet -d transferTRST.json.example -k keystore.example -p password.example -a interact -r https://mainnet.infura.io/{your_infura_token}
+```
+
+## To Be Improved in a Near Future
+- Even though the datafile flag supports all the complex use cases, it's a hassle for simple day-to-day use such as transferring ERC20 tokens. Introducing a new flag, let's say template, which only requires users to input smart contract address, method's name, and parameters.  The ABI can be fetched on etherscan.
+
+- More actions such as transfer ETH.
+
+- GUI tools.
+
+- Sign transactions with hardware wallet.
 
 
 ## License
