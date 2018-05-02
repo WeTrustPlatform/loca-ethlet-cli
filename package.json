@@ -12,7 +12,7 @@
     "loca-ethlet": "bin/index.js"
   },
   "engines": {
-    "node": ">=7.6.0"
+    "node": ">=8.0.0"
   },
   "author": "Hoang Nguyen",
   "license": "GPL-3.0",
