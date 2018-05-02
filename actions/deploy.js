@@ -1,5 +1,6 @@
 const validator = require('../lib/validators').deploy;
 const signAndSubmit = require('../lib/signAndSubmit');
+const {prepend0x} = require('../lib/util');
 
 exports = module.exports = async function deploy(
   dataFileContent,
@@ -19,8 +20,7 @@ exports = module.exports = async function deploy(
     parameters = [],
   } = dataFileContent;
 
-  const bytecode =
-      rawBytecode.startsWith('0x') ? rawBytecode : `0x${rawBytecode}`;
+  const bytecode = prepend0x(rawBytecode);
 
   const contract = new web3.eth.Contract(abi);
   const data = contract.deploy({
