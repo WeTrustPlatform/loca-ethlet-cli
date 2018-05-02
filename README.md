@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/WeTrustPlatform/loca-ethlet-cli.svg?branch=master)](https://travis-ci.org/WeTrustPlatform/loca-ethlet-cli)
+
 # loca-ethlet-cli
 
 Local Ethereum Wallet for Crazy People
@@ -70,7 +72,7 @@ const ethlet = new LocaEthlet(options);
 const result = await ethlet.execute('deploy', deployDataFile);
 ```
 
-Sometimes when you have the Javascript objects instead of file, you might want to invoke the action directly without having to initialize the `LocaEthlet.`
+Sometimes when you have the Javascript objects instead of files, you might want to invoke the action directly without having to initialize the `LocaEthlet.`
 
 ```javascript
 const deploy = require('loca-ethlet-cli').deploy;
