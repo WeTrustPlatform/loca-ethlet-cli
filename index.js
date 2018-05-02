@@ -31,7 +31,7 @@ const Ethlet = function Ethlet(options) {
   return this;
 };
 
-let actionModules = glob.sync('./actions/*.js');
+let actionModules = glob.sync(path.resolve(__dirname, './actions/*.js'));
 let supportedActions = [];
 actionModules.forEach((f) => {
   const fileName = path.basename(f);
