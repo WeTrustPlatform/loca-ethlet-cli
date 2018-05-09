@@ -28,10 +28,10 @@ test('Test Init LocaEthlet Return Credential', () => {
       .toBe('0xd69d3EF6B055D4Dbd04D83525f2968b875A8366b');
 });
 
-test('Test Init LocaEthlet Return Web3 Instance', () => {
+test('Test Init LocaEthlet Return Web3 Instance', async () => {
   const ethlet = createEthlet();
   expect(ethlet).toHaveProperty('web3');
-  expect(ethlet.web3.eth.net.getId()).resolves.toBe(1);
+  await expect(ethlet.web3.eth.net.getId()).resolves.toBe(1);
 });
 
 test('Test LocaEthlet Execute Throws', async () => {
