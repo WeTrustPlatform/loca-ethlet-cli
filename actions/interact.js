@@ -4,7 +4,8 @@ const signAndSubmit = require('../lib/signAndSubmit');
 exports = module.exports = async function interact(
   dataFileContent,
   credential,
-  web3) {
+  web3,
+) {
   if (!validator(dataFileContent)) {
     throw new Error(JSON.stringify(validator.errors));
   }
@@ -33,6 +34,6 @@ exports = module.exports = async function interact(
       gasPrice,
     },
     credential,
-    web3
+    web3,
   );
 };

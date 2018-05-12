@@ -43,8 +43,8 @@ console.log(`Args: ${JSON.stringify(args)}`);
 const LocaEthlet = require('../index');
 
 const main = async function main() {
-  const {keystore, password, rpc, action, datafile} = args;
-  const ethlet = new LocaEthlet({keystore, password, rpc});
+  const { keystore, password, rpc, action, datafile } = args;
+  const ethlet = new LocaEthlet({ keystore, password, rpc });
   return await ethlet.execute(action, datafile);
 };
 

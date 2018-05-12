@@ -1,11 +1,12 @@
 const validator = require('../lib/validators').deploy;
 const signAndSubmit = require('../lib/signAndSubmit');
-const {prepend0x} = require('../lib/util');
+const { prepend0x } = require('../lib/util');
 
 exports = module.exports = async function deploy(
   dataFileContent,
   credential,
-  web3) {
+  web3,
+) {
   if (!validator(dataFileContent)) {
     throw new Error(JSON.stringify(validator.errors));
   }
@@ -23,19 +24,22 @@ exports = module.exports = async function deploy(
   const bytecode = prepend0x(rawBytecode);
 
   const contract = new web3.eth.Contract(abi);
-  const data = contract.deploy({
-    data: bytecode,
-    arguments: parameters,
-    }).encodeABI();
+  const data = contract
+    .deploy({
+      data: bytecode,
+      arguments: parameters,
+    })
+    .encodeABI();
 
   return signAndSubmit(
-  {
-    data,
-    value,
-    chainId,
-    gasLimit,
-    gasPrice,
-  },
-  credential,
-  web3);
+    {
+      data,
+      value,
+      chainId,
+      gasLimit,
+      gasPrice,
+    },
+    credential,
+    web3,
+  );
 };
