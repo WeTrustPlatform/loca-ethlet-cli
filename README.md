@@ -18,7 +18,7 @@ npm install -g loca-ethlet-cli
 #### As command line interface:
 
 ```
-loca-ethlet-cli --help
+loca-ethlet --help
 ```
 
 List of [arguments](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/bin/index.js):
