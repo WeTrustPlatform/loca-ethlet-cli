@@ -6,7 +6,8 @@
   "scripts": {
     "coverage": "coveralls < coverage/lcov.info",
     "test": "jest",
-    "lint": "eslint **/*.js --fix"
+    "lint": "eslint **/*.js --fix",
+    "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
   "bin": {
     "loca-ethlet": "bin/index.js"
@@ -30,8 +31,11 @@
     "coveralls": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "ganache-cli": "^6.1.0",
-    "jest": "^22.4.3"
+    "jest": "^22.4.3",
+    "prettier": "^1.12.1"
   },
   "jest": {
     "collectCoverage": true,

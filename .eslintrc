@@ -1,7 +1,8 @@
 {
-  "extends" : "google",
+  "extends" : ["google", "prettier"],
+  "plugins" : ["prettier"],
   "parserOptions" : {"ecmaVersion" : 2017},
   "rules" : {
-    "max-len": [ "error", {"code" : 120} ]
+    "prettier/prettier": ["error", {"trailingComma": "all", "singleQuote": true}]
   }
 }
