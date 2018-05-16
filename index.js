@@ -12,7 +12,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
@@ -28,17 +27,28 @@ const Ethlet = function Ethlet(options) {
 
   this.web3 = new Web3(new Web3.providers.HttpProvider(options.rpc));
 
-  this.credential = getCredential(options.keystore, options.password, this.web3);
+  this.credential = getCredential(
+    options.keystore,
+    options.password,
+    this.web3,
+  );
 
   this.execute = async (actionName, dataFile) => {
     assert.ok(
-      (supportedActions.indexOf(actionName.toLowerCase()) > -1),
-      `Action '${actionName}' is invalid. Supported actions: ${[...supportedActions]}`);
+      supportedActions.indexOf(actionName.toLowerCase()) > -1,
+      `Action '${actionName}' is invalid. Supported actions: ${[
+        ...supportedActions,
+      ]}`,
+    );
 
     assert.ok(dataFile, `Missing the location of datafile`);
 
     const dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
-    return Ethlet[actionName.toLowerCase()](dataFileContent, this.credential, this.web3);
+    return Ethlet[actionName.toLowerCase()](
+      dataFileContent,
+      this.credential,
+      this.web3,
+    );
   };
 
   this.supportedActions = supportedActions;
@@ -46,9 +56,10 @@ const Ethlet = function Ethlet(options) {
   return this;
 };
 
+// Bind all actions in the /actions to Ethlet
 let actionModules = glob.sync(path.resolve(__dirname, './actions/*.js'));
 let supportedActions = [];
-actionModules.forEach((f) => {
+actionModules.forEach(f => {
   const fileName = path.basename(f);
   const actionName = fileName.split('.')[0].toLowerCase();
   supportedActions.push(actionName);

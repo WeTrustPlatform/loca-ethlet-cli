@@ -90,6 +90,7 @@ const result = await deploy(dataFileContent, credential, web3);
 Datafile's schema for each action:
 - [deploy](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/schemas/deploy.json)
 - [interact](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/schemas/interact.json)
+- [send](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/schemas/send.json)
 - (to be added)
 
 

@@ -6,6 +6,7 @@ const keystore = path.resolve('./data/keystore.example');
 const password = path.resolve('./data/password.example');
 const deployData = path.resolve('./__tests__/deploy.json');
 const interactData = path.resolve('./__tests__/interact.json');
+const sendData = path.resolve('./__tests__/send.json');
 const rpc = `http://localhost:${server.address().port}`;
 
 beforeAll(() => console.log(`Jest sets up testrpc at ${rpc}`));
@@ -57,6 +58,19 @@ test('Test LocaEthlet Interact Successful', async () => {
   expect(result.blockHash).toBeTruthy();
 });
 
+// This test sends ETH to the contract deployed in the previous test
+test('Test LocaEthlet Send Successful', async () => {
+  const ethlet = createEthlet();
+  const result = await ethlet.execute('send', sendData);
+  expect(result.blockHash).toBeTruthy();
+  const balance = await ethlet.web3.eth.getBalance(
+    '0x1Cd41489Ab95997A86FFdE793f93c55388A6d6Fa',
+  );
+  return expect(balance).toBe(ethlet.web3.utils.toWei('1', 'ether')); // same value in send.json
+});
+
+// The deployed contract address is deterministic based on the account's nonce
+// Hence this test will fail if you add additional tests to run before this test
 test('Test CLI Deploy', async () => {
   const util = require('util');
   const exec = require('child_process').exec;
@@ -66,6 +80,6 @@ test('Test CLI Deploy', async () => {
   expect(stderr).toBeFalsy();
   // Check if the stdout has the address of the second deployed contract
   expect(JSON.stringify(stdout)).toMatch(
-    /0x49b7F165b55911896CE7F5d82786120F1A34B50E/,
+    /0xc33CE374F63e1D2255Ce51bdc0916FDe21e5C8aa/,
   );
 });
