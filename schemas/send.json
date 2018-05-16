@@ -1,0 +1,35 @@
+{
+  "$id": "send",
+  "description": "Schema for the send.js input",
+  "type": "object",
+  "required": ["to", "chainId", "value"],
+  "properties": {
+    "to": {
+      "type": "string",
+      "description": "Address of the receipient"
+    },
+    "data": {
+      "type": "string",
+      "description": "Custom data to be sent"
+    },
+    "chainId": {
+      "type": "number",
+      "description": "Network Id. For example: 1 (Mainnet), 4 (Rinkeby)"
+    },
+    "value": {
+      "type": "string",
+      "description": "Amount of ETH to be sent. String represenation of number. For example: '5000' or '0x1388'",
+      "default": "0x0"
+    },
+    "gasLimit": {
+      "type": "string",
+      "description": "String represenation of number. For example: '5000' or '0x1388'",
+      "default": "5000000"
+    },
+    "gasPrice": {
+      "type": "string",
+      "description": "String represenation of number. For example: '5000' or '0x1388'",
+      "default": "50000000000"
+    }
+  }
+}
