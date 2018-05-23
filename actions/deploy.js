@@ -4,7 +4,7 @@ const { prepend0x } = require('../lib/util');
 
 exports = module.exports = async function deploy(
   dataFileContent,
-  credential,
+  walletProvider,
   web3,
 ) {
   if (!validator(dataFileContent)) {
@@ -39,7 +39,7 @@ exports = module.exports = async function deploy(
       gasLimit,
       gasPrice,
     },
-    credential,
+    walletProvider,
     web3,
   );
 };

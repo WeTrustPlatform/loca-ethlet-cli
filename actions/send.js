@@ -3,7 +3,7 @@ const validator = require('../lib/validators').send;
 
 exports = module.exports = async function send(
   dataFileContent,
-  credential,
+  walletProvider,
   web3,
 ) {
   if (!validator(dataFileContent)) {
@@ -21,7 +21,7 @@ exports = module.exports = async function send(
       gasLimit,
       gasPrice,
     },
-    credential,
+    walletProvider,
     web3,
   );
 };

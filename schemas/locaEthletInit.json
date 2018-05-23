@@ -2,15 +2,11 @@
   "$id": "locaEthletInit",
   "description": "Schema for initialize LocaEthlet instance",
   "type": "object",
-  "required": ["rpc", "keystore", "password"],
+  "required": ["rpc", "walletProvider"],
   "properties": {
-    "keystore": {
-      "type": "string",
-      "description": "Location of the keystore.json file"
-    },
-    "password": {
-      "type": "string",
-      "description": "Location of the password file"
+    "walletProvider": {
+      "type": "object",
+      "description": "An implementation WalletProvider. Can be found in ./lib/wallet-provider"
     },
     "rpc": {
       "type": "string",
