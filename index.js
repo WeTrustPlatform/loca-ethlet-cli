@@ -18,7 +18,6 @@ const path = require('path');
 const assert = require('assert');
 const Web3 = require('web3');
 const validator = require('./lib/validators').locaEthletInit;
-const getCredential = require('./lib/getCredential');
 
 const Ethlet = function Ethlet(options) {
   if (!validator(options)) {
@@ -27,11 +26,7 @@ const Ethlet = function Ethlet(options) {
 
   this.web3 = new Web3(new Web3.providers.HttpProvider(options.rpc));
 
-  this.credential = getCredential(
-    options.keystore,
-    options.password,
-    this.web3,
-  );
+  this.walletProvider = options.walletProvider;
 
   this.execute = async (actionName, dataFile) => {
     assert.ok(
@@ -46,7 +41,7 @@ const Ethlet = function Ethlet(options) {
     const dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
     return Ethlet[actionName.toLowerCase()](
       dataFileContent,
-      this.credential,
+      this.walletProvider,
       this.web3,
     );
   };

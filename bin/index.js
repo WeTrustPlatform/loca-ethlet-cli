@@ -13,7 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 /**
  * Usage: loca-ethlet -h
  */
@@ -70,10 +69,12 @@ const args = parser.parseArgs();
 console.log(`Args: ${JSON.stringify(args)}`);
 
 const LocaEthlet = require('../index');
+const KeyStore = require('../lib/wallet-provider/KeyStore');
 
 const main = async function main() {
   const { keystore, password, rpc, action, datafile } = args;
-  const ethlet = new LocaEthlet({ keystore, password, rpc });
+  const walletProvider = new KeyStore({ keystore, password });
+  const ethlet = new LocaEthlet({ walletProvider, rpc });
   return await ethlet.execute(action, datafile);
 };
 

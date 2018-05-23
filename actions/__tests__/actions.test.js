@@ -32,6 +32,11 @@ const web3 = {
   },
 };
 
+const walletProvider = {
+  getAddress: jest.fn(),
+  sign: jest.fn(),
+};
+
 test('Deploy validation error', () => {
   deployValidator({});
   return expect(deploy()).rejects.toThrowError(
@@ -45,7 +50,7 @@ test('Deploy success', () => {
     bytecode: 'abc',
     abi: [{ a: 1 }],
   };
-  return expect(deploy(dataFileContent, {}, web3)).resolves.toBe(
+  return expect(deploy(dataFileContent, walletProvider, web3)).resolves.toBe(
     'signed n submitted',
   );
 });
@@ -64,7 +69,7 @@ test('Interact success', () => {
     contractAddress: 'a',
     methodName: 'a',
   };
-  return expect(interact(dataFileContent, {}, web3)).resolves.toBe(
+  return expect(interact(dataFileContent, walletProvider, web3)).resolves.toBe(
     'signed n submitted',
   );
 });
@@ -82,7 +87,7 @@ test('Send success', () => {
     to: '123',
     value: '123',
   };
-  return expect(send(dataFileContent, {}, web3)).resolves.toBe(
+  return expect(send(dataFileContent, walletProvider, web3)).resolves.toBe(
     'signed n submitted',
   );
 });

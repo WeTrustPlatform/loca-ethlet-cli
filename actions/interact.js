@@ -3,7 +3,7 @@ const signAndSubmit = require('../lib/signAndSubmit');
 
 exports = module.exports = async function interact(
   dataFileContent,
-  credential,
+  walletProvider,
   web3,
 ) {
   if (!validator(dataFileContent)) {
@@ -33,7 +33,7 @@ exports = module.exports = async function interact(
       gasLimit,
       gasPrice,
     },
-    credential,
+    walletProvider,
     web3,
   );
 };

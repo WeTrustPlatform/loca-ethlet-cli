@@ -1,7 +1,7 @@
-const LocaEthlet = require('../index');
-const { server } = require('../setupTest');
 const path = require('path');
-
+const { server } = require('../setupTest');
+const LocaEthlet = require('../index');
+const KeyStore = require('../lib/wallet-provider/KeyStore');
 const keystore = path.resolve('./data/keystore.example');
 const password = path.resolve('./data/password.example');
 const deployData = path.resolve('./__tests__/deploy.json');
@@ -16,19 +16,12 @@ afterAll(() => {
 });
 
 const createEthlet = () => {
+  const walletProvider = new KeyStore({ keystore, password });
   return new LocaEthlet({
-    keystore,
-    password,
+    walletProvider,
     rpc,
   });
 };
-
-test('Test Init LocaEthlet Return Credential', () => {
-  const ethlet = createEthlet();
-  expect(ethlet.credential.address).toBe(
-    '0xd69d3EF6B055D4Dbd04D83525f2968b875A8366b',
-  );
-});
 
 test('Test Init LocaEthlet Return Web3 Instance', async () => {
   const ethlet = createEthlet();
