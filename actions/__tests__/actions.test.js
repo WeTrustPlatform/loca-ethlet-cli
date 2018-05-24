@@ -1,7 +1,9 @@
+const Web3 = require('web3');
 const path = require('path');
 const KeyStore = require('../../lib/wallet-provider/KeyStore');
 const keystore = path.resolve('./data/keystore.example');
 const password = path.resolve('./data/password.example');
+
 const mockSignAndSubmit = Promise.resolve('signed n submitted');
 require('../../lib/signAndSubmit');
 jest.mock('../../lib/signAndSubmit', () => {
@@ -18,23 +20,7 @@ const {
   send: sendValidator,
 } = require('../../lib/validators');
 
-const web3 = {
-  eth: {
-    Contract: jest.fn(() => ({
-      deploy: jest.fn(() => ({
-        encodeABI: jest.fn(),
-      })),
-      methods: {
-        a: jest.fn(() => ({
-          encodeABI: jest.fn(),
-        })),
-      },
-    })),
-  },
-  utils: {
-    toHex: jest.fn(),
-  },
-};
+const web3 = new Web3();
 
 const walletProvider = new KeyStore({ keystore, password });
 
@@ -66,8 +52,14 @@ test('Interact validation error', () => {
 test('Interact success', () => {
   const dataFileContent = {
     chainId: 1,
-    abi: [{ name: 'a' }],
-    contractAddress: 'a',
+    abi: [
+      {
+        inputs: [],
+        name: 'a',
+        type: 'function',
+      },
+    ],
+    contractAddress: '0x1Cd41489Ab95997A86FFdE793f93c55388A6d6Fa',
     methodName: 'a',
   };
   return expect(interact(dataFileContent, walletProvider, web3)).resolves.toBe(
