@@ -25,43 +25,41 @@ const Ethlet = function Ethlet(options) {
     throw new Error(JSON.stringify(validator.errors));
   }
 
-  this.web3 = new Web3(new Web3.providers.HttpProvider(options.rpc));
+  const { walletProvider, rpc } = options;
+  this.web3 = new Web3(new Web3.providers.HttpProvider(rpc));
 
-  this.walletProvider = options.walletProvider;
+  this.walletProvider = walletProvider;
 
   this.execute = async (actionName, dataFile) => {
     assert.ok(
-      supportedActions.indexOf(actionName.toLowerCase()) > -1,
+      supportedActions[actionName],
       `Action '${actionName}' is invalid. Supported actions: ${[
-        ...supportedActions,
+        ...Object.keys(supportedActions),
       ]}`,
     );
 
     assert.ok(dataFile, `Missing the location of datafile`);
 
     const dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
-    return Ethlet[actionName.toLowerCase()](
+    return supportedActions[actionName](
       dataFileContent,
       this.walletProvider,
       this.web3,
     );
   };
 
-  this.supportedActions = supportedActions;
-
   return this;
 };
 
 Ethlet.WalletProvider = walletProvider;
 
-// Bind all actions in the /actions to Ethlet
+// Get all the actions
 let actionModules = glob.sync(path.resolve(__dirname, './actions/*.js'));
-let supportedActions = [];
+let supportedActions = {};
 actionModules.forEach(f => {
   const fileName = path.basename(f);
   const actionName = fileName.split('.')[0].toLowerCase();
-  supportedActions.push(actionName);
-  Ethlet[actionName] = require(f);
+  supportedActions[actionName] = require(f);
 });
 
 exports = module.exports = Ethlet;
