@@ -104,11 +104,9 @@ loca-ethlet -d transferTRST.json.example -k keystore.example -p password.example
 ## To Be Improved in a Near Future
 - Even though the datafile flag supports all the complex use cases, it's a hassle for simple day-to-day use such as transferring ERC20 tokens. Introducing a new flag, let's say template, which only requires users to input smart contract address, method's name, and parameters.  The ABI can be fetched on etherscan.
 
-- More actions such as transfer ETH.
+- GUI tools (in-progress).
 
-- GUI tools.
-
-- Sign transactions with hardware wallet.
+- Sign transactions with hardware wallet (in-progress).
 
 
 ## License
