@@ -11,7 +11,7 @@
     "rpc": {
       "type": "string",
       "format": "uri",
-      "description": "Address to an Ethereum node using RPC"
+      "description": "URL of an Ethereum node's RPC server"
     }
   }
 }
