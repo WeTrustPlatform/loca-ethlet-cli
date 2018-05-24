@@ -32,27 +32,27 @@ const parser = new ArgumentParser({
 });
 
 parser.addArgument(['-a', '--action'], {
-  help: 'action name i.e deploy or interact',
+  help: 'Action name i.e deploy, interact or send',
   required: true,
 });
 
 parser.addArgument(['-k', '--keystore'], {
-  help: 'location of the keystore json file',
+  help: 'Location of the keystore json file',
   required: true,
 });
 
 parser.addArgument(['-p', '--password'], {
-  help: 'location of the password file to unlock keystore',
+  help: 'Location of the password file to unlock keystore',
   required: true,
 });
 
 parser.addArgument(['-d', '--datafile'], {
-  help: 'location of the datafile',
+  help: 'Location of the datafile',
   required: true,
 });
 
 parser.addArgument(['-r', '--rpc'], {
-  help: 'rpc url',
+  help: 'URL of the Ethereum node\'s RPC server',
   required: true,
 });
 ```
@@ -76,7 +76,7 @@ const walletProvider = new KeyStore(keyStoreOptions);
 // initialize LocaEthlet
 const ethlet = new LocaEthlet({
   walletProvider,
-  rpc, // url
+  rpc, // URL of the Ethereum node's RPC server
 });
 
 const deployDataFile = ; // location of the datafile
