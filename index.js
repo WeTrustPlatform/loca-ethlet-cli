@@ -12,12 +12,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
+const fs = require('fs');
 const assert = require('assert');
 const Web3 = require('web3');
 const validator = require('./lib/validators').locaEthletInit;
+const walletProvider = require('./lib/wallet-provider');
 
 const Ethlet = function Ethlet(options) {
   if (!validator(options)) {
@@ -50,6 +51,8 @@ const Ethlet = function Ethlet(options) {
 
   return this;
 };
+
+Ethlet.WalletProvider = walletProvider;
 
 // Bind all actions in the /actions to Ethlet
 let actionModules = glob.sync(path.resolve(__dirname, './actions/*.js'));

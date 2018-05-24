@@ -1,3 +1,7 @@
+const path = require('path');
+const KeyStore = require('../../lib/wallet-provider/KeyStore');
+const keystore = path.resolve('./data/keystore.example');
+const password = path.resolve('./data/password.example');
 const mockSignAndSubmit = Promise.resolve('signed n submitted');
 require('../../lib/signAndSubmit');
 jest.mock('../../lib/signAndSubmit', () => {
@@ -32,10 +36,7 @@ const web3 = {
   },
 };
 
-const walletProvider = {
-  getAddress: jest.fn(),
-  sign: jest.fn(),
-};
+const walletProvider = new KeyStore({ keystore, password });
 
 test('Deploy validation error', () => {
   deployValidator({});

@@ -62,28 +62,26 @@ parser.addArgument(['-r', '--rpc'], {
 
 ```javascript
 const LocaEthlet = require('loca-ethlet-cli');
-const options = {
+
+// get the wallet provider
+// implementations can be found in ./lib/wallet-provider
+const { KeyStore } = LocaEthlet.WalletProvider;
+const keyStoreOptions = {
   keystore, // location of the keystore json file
   password, // location of the password file
-  rpc, // url
 };
-const deployDataFile = ; // location of the datafile 
 
-const ethlet = new LocaEthlet(options);
+const walletProvider = new KeyStore(keyStoreOptions);
+
+// initialize LocaEthlet
+const ethlet = new LocaEthlet({
+  walletProvider,
+  rpc, // url
+});
+
+const deployDataFile = ; // location of the datafile
 const result = await ethlet.execute('deploy', deployDataFile);
 ```
-
-Sometimes when you have the Javascript objects instead of files, you might want to invoke the action directly without having to initialize the `LocaEthlet.`
-
-```javascript
-const deploy = require('loca-ethlet-cli').deploy;
-const result = await deploy(dataFileContent, credential, web3);
-```
-
-**Required:**
-- `datafileContent`: JSON object parsed from the datafile as in the CLI. Please refer to the [schemas](#Schemas) 
-- `credential: {address, privateKey}`: Address and private key of the sender
-- `web3`: An instance of [Web3](https://github.com/ethereum/web3.js/#usage)
 
 
 ## Schemas

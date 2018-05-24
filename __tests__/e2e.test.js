@@ -1,7 +1,6 @@
 const path = require('path');
 const { server } = require('../setupTest');
 const LocaEthlet = require('../index');
-const KeyStore = require('../lib/wallet-provider/KeyStore');
 const keystore = path.resolve('./data/keystore.example');
 const password = path.resolve('./data/password.example');
 const deployData = path.resolve('./__tests__/deploy.json');
@@ -16,7 +15,10 @@ afterAll(() => {
 });
 
 const createEthlet = () => {
-  const walletProvider = new KeyStore({ keystore, password });
+  const walletProvider = new LocaEthlet.WalletProvider.KeyStore({
+    keystore,
+    password,
+  });
   return new LocaEthlet({
     walletProvider,
     rpc,

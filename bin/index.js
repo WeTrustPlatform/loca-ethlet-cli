@@ -33,7 +33,7 @@ const parser = new ArgumentParser({
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
   `,
   description:
     'Interact/deploy Smart Contracts and transfer ETH/Tokens via RPC',
@@ -69,11 +69,13 @@ const args = parser.parseArgs();
 console.log(`Args: ${JSON.stringify(args)}`);
 
 const LocaEthlet = require('../index');
-const KeyStore = require('../lib/wallet-provider/KeyStore');
 
 const main = async function main() {
   const { keystore, password, rpc, action, datafile } = args;
-  const walletProvider = new KeyStore({ keystore, password });
+  const walletProvider = new LocaEthlet.WalletProvider.KeyStore({
+    keystore,
+    password,
+  });
   const ethlet = new LocaEthlet({ walletProvider, rpc });
   return await ethlet.execute(action, datafile);
 };
