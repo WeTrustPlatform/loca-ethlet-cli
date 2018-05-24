@@ -31,10 +31,19 @@ test('Test Init LocaEthlet Return Web3 Instance', async () => {
   await expect(ethlet.web3.eth.net.getId()).resolves.toBe(1);
 });
 
-test('Test LocaEthlet Execute Throws', async () => {
+test('Test LocaEthlet Execute Throws Invalid Action', async () => {
+  // expect 2 assertions were called
+  expect.assertions(2);
+
   const ethlet = createEthlet();
   expect(ethlet).toHaveProperty('execute');
-  await expect(ethlet.execute()).rejects.toThrow();
+  try {
+    await ethlet.execute('wrongAction');
+  } catch (e) {
+    return expect(e.message).toMatch(
+      "Action 'wrongAction' is invalid. Supported actions: deploy,interact,send",
+    );
+  }
 });
 
 test('Test LocaEthlet Deploy Successful', async () => {
