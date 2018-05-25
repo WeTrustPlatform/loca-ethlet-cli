@@ -21,43 +21,37 @@ This tool can be used in two ways: (1) As a command line or (2) As a node_module
 
 ```
 loca-ethlet --help
+
+usage: loca-ethlet [-h] [-v] -a  -k  -p  -d  -r
+
+Interact/deploy Smart Contracts and transfer ETH/Tokens via RPC
+
+Optional arguments:
+  -h, --help        Show this help message and exit.
+  -v, --version     Show program's version number and exit.
+  -a , --action     Action name i.e deploy, interact or send
+  -k , --keystore   Location of the keystore json file
+  -p , --password   Location of the password file to unlock keystore
+  -d , --datafile   Location of the datafile
+  -r , --rpc        URL of the Ethereum node's RPC server
+
+    Copyright (C) 2018 WeTrustPlatform
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.txt>.
 ```
 
-List of [arguments](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/bin/index.js):
-```javascript
-const ArgumentParser = require('argparse').ArgumentParser;
-const parser = new ArgumentParser({
-  version: require('../package.json').version,
-  addHelp: true,
-  description:
-    'Interact/deploy Smart Contracts and transfer ETH/Tokens via RPC',
-});
-
-parser.addArgument(['-a', '--action'], {
-  help: 'Action name i.e deploy, interact or send',
-  required: true,
-});
-
-parser.addArgument(['-k', '--keystore'], {
-  help: 'Location of the keystore json file',
-  required: true,
-});
-
-parser.addArgument(['-p', '--password'], {
-  help: 'Location of the password file to unlock keystore',
-  required: true,
-});
-
-parser.addArgument(['-d', '--datafile'], {
-  help: 'Location of the datafile',
-  required: true,
-});
-
-parser.addArgument(['-r', '--rpc'], {
-  help: 'URL of the Ethereum node\'s RPC server',
-  required: true,
-});
-```
+List of [arguments](https://github.com/WeTrustPlatform/loca-ethlet-cli/blob/master/bin/index.js).
 
 
 #### As node_module:
