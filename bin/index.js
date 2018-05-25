@@ -17,11 +17,15 @@
  * Usage: loca-ethlet -h
  */
 
-const ArgumentParser = require('argparse').ArgumentParser;
+const argparse = require('argparse');
+const ArgumentParser = argparse.ArgumentParser;
 const parser = new ArgumentParser({
+  prog: 'loca-ethlet',
   version: require('../package.json').version,
   addHelp: true,
-  epilog: `Copyright (C) 2018 WeTrustPlatform
+  epilog: `
+    Copyright (C) 2018 WeTrustPlatform
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -37,30 +41,36 @@ const parser = new ArgumentParser({
   `,
   description:
     'Interact/deploy Smart Contracts and transfer ETH/Tokens via RPC',
+  formatterClass: argparse.RawDescriptionHelpFormatter,
 });
 
 parser.addArgument(['-a', '--action'], {
   help: 'Action name i.e deploy, interact or send',
+  metavar: '',
   required: true,
 });
 
 parser.addArgument(['-k', '--keystore'], {
   help: 'Location of the keystore json file',
+  metavar: '',
   required: true,
 });
 
 parser.addArgument(['-p', '--password'], {
   help: 'Location of the password file to unlock keystore',
+  metavar: '',
   required: true,
 });
 
 parser.addArgument(['-d', '--datafile'], {
   help: 'Location of the datafile',
+  metavar: '',
   required: true,
 });
 
 parser.addArgument(['-r', '--rpc'], {
   help: "URL of the Ethereum node's RPC server",
+  metavar: '',
   required: true,
 });
 
