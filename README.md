@@ -66,6 +66,7 @@ const LocaEthlet = require('loca-ethlet-cli');
 // get the wallet provider
 // implementations can be found in ./lib/wallet-provider
 const { KeyStore } = LocaEthlet.WalletProvider;
+
 const keyStoreOptions = {
   keystore, // location of the keystore json file
   password, // location of the password file
@@ -79,7 +80,7 @@ const ethlet = new LocaEthlet({
   rpc, // URL of the Ethereum node's RPC server
 });
 
-const deployDataFile = ; // location of the datafile
+const deployDataFile = ; // location of the datafile or a data object
 const result = await ethlet.execute('deploy', deployDataFile);
 ```
 

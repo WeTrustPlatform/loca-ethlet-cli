@@ -20,17 +20,30 @@ const Web3 = require('web3');
 const validator = require('./lib/validators').locaEthletInit;
 const walletProvider = require('./lib/wallet-provider');
 
-const Ethlet = function Ethlet(options) {
-  if (!validator(options)) {
-    throw new Error(JSON.stringify(validator.errors));
+/**
+ * Main Class
+ *
+ */
+class Ethlet {
+  /**
+   * @param {Object} options: { walletProvider, rpc }
+   */
+  constructor(options) {
+    if (!validator(options)) {
+      throw new Error(JSON.stringify(validator.errors));
+    }
+    const { walletProvider, rpc } = options;
+    this.web3 = new Web3(new Web3.providers.HttpProvider(rpc));
+    this.walletProvider = walletProvider;
   }
 
-  const { walletProvider, rpc } = options;
-  this.web3 = new Web3(new Web3.providers.HttpProvider(rpc));
-
-  this.walletProvider = walletProvider;
-
-  this.execute = async (actionName, dataFile) => {
+  /**
+   * Execute an action
+   * @param {string} actionName: Name of the action i.e. deploy, interact, send
+   * @param {uri | object} dataFile: Location of dataFile or a data json object
+   * @return {Promise} result: Result of web3.eth.sendSignedTransaction
+   */
+  async execute(actionName, dataFile) {
     assert.ok(
       supportedActions[actionName],
       `Action '${actionName}' is invalid. Supported actions: ${[
@@ -40,16 +53,20 @@ const Ethlet = function Ethlet(options) {
 
     assert.ok(dataFile, `Missing the location of datafile`);
 
-    const dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+    let dataFileContent;
+    if (typeof dataFile === 'string') {
+      dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+    } else if (typeof dataFile === 'object') {
+      dataFileContent = dataFile;
+    }
+
     return supportedActions[actionName](
       dataFileContent,
       this.walletProvider,
       this.web3,
     );
-  };
-
-  return this;
-};
+  }
+}
 
 Ethlet.WalletProvider = walletProvider;
 

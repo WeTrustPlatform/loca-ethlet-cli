@@ -3,7 +3,8 @@ const server = granche.server({
   network_id: 1,
   accounts: [
     {
-      secretKey: '0x275ef35f55525049678090f9e32d16cbcca06f07dc4f51e297ed39a47d901981',
+      secretKey:
+        '0x275ef35f55525049678090f9e32d16cbcca06f07dc4f51e297ed39a47d901981',
       balance: '0x4563918244f40000',
     },
   ],
