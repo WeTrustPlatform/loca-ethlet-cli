@@ -1,18 +1,11 @@
 const path = require('path');
-const { server } = require('../setupTest');
 const LocaEthlet = require('../index');
 const keystore = path.resolve('./data/keystore.example');
 const password = path.resolve('./data/password.example');
 const deployData = path.resolve('./__tests__/deploy.json');
 const interactData = path.resolve('./__tests__/interact.json');
 const sendData = path.resolve('./__tests__/send.json');
-const rpc = `http://localhost:${server.address().port}`;
-
-beforeAll(() => console.log(`Jest sets up testrpc at ${rpc}`));
-afterAll(() => {
-  console.log('Jest tears down');
-  server.close();
-});
+const rpc = global.__RPC__;
 
 const createEthlet = () => {
   const walletProvider = new LocaEthlet.WalletProvider.KeyStore({
@@ -29,21 +22,6 @@ test('Test Init LocaEthlet Return Web3 Instance', async () => {
   const ethlet = createEthlet();
   expect(ethlet).toHaveProperty('web3');
   await expect(ethlet.web3.eth.net.getId()).resolves.toBe(1);
-});
-
-test('Test LocaEthlet Execute Throws Invalid Action', async () => {
-  // expect 2 assertions were called
-  expect.assertions(2);
-
-  const ethlet = createEthlet();
-  expect(ethlet).toHaveProperty('execute');
-  try {
-    await ethlet.execute('wrongAction');
-  } catch (e) {
-    return expect(e.message).toMatch(
-      "Action 'wrongAction' is invalid. Supported actions: deploy,interact,send",
-    );
-  }
 });
 
 test('Test LocaEthlet Deploy Successful', async () => {

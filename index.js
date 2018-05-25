@@ -53,18 +53,16 @@ class Ethlet {
 
     assert.ok(data, `Missing the location of datafile`);
 
-    let dataFileContent;
+    let params;
     if (typeof data === 'string') {
-      dataFileContent = JSON.parse(fs.readFileSync(data, 'utf-8'));
+      params = JSON.parse(fs.readFileSync(data, 'utf-8'));
     } else if (typeof data === 'object') {
-      dataFileContent = data;
+      params = data;
+    } else {
+      assert.fail('Expect data to be typeof string or object');
     }
 
-    return supportedActions[actionName](
-      dataFileContent,
-      this.walletProvider,
-      this.web3,
-    );
+    return supportedActions[actionName](params, this.walletProvider, this.web3);
   }
 }
 
