@@ -26,7 +26,7 @@ const walletProvider = require('./lib/wallet-provider');
  */
 class Ethlet {
   /**
-   * @param {Object} options: { walletProvider, rpc }
+   * @param {object} options: { walletProvider, rpc }
    */
   constructor(options) {
     if (!validator(options)) {
@@ -40,10 +40,10 @@ class Ethlet {
   /**
    * Execute an action
    * @param {string} actionName: Name of the action i.e. deploy, interact, send
-   * @param {uri | object} dataFile: Location of dataFile or a data json object
+   * @param {uri | object} data: Location of data file or a data json object
    * @return {Promise} result: Result of web3.eth.sendSignedTransaction
    */
-  async execute(actionName, dataFile) {
+  async execute(actionName, data) {
     assert.ok(
       supportedActions[actionName],
       `Action '${actionName}' is invalid. Supported actions: ${[
@@ -51,13 +51,13 @@ class Ethlet {
       ]}`,
     );
 
-    assert.ok(dataFile, `Missing the location of datafile`);
+    assert.ok(data, `Missing the location of datafile`);
 
     let dataFileContent;
-    if (typeof dataFile === 'string') {
-      dataFileContent = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
-    } else if (typeof dataFile === 'object') {
-      dataFileContent = dataFile;
+    if (typeof data === 'string') {
+      dataFileContent = JSON.parse(fs.readFileSync(data, 'utf-8'));
+    } else if (typeof data === 'object') {
+      dataFileContent = data;
     }
 
     return supportedActions[actionName](
@@ -68,6 +68,7 @@ class Ethlet {
   }
 }
 
+// Load the wallet providers
 Ethlet.WalletProvider = walletProvider;
 
 // Get all the actions
