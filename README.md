@@ -15,6 +15,8 @@ npm install -g loca-ethlet-cli
 
 ## Usage
 
+This tool can be used in two ways: (1) As a command line or (2) As a node_module
+
 #### As command line interface:
 
 ```
@@ -80,8 +82,9 @@ const ethlet = new LocaEthlet({
   rpc, // URL of the Ethereum node's RPC server
 });
 
-const deployDataFile = ; // location of the datafile or a data object
-const result = await ethlet.execute('deploy', deployDataFile);
+const deployData = ; // location of the data file or a data json object
+const result = await ethlet.execute('deploy', deployData);
+console.log(result.contractAddress);
 ```
 
 
