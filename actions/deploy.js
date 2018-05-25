@@ -2,12 +2,19 @@ const validator = require('../lib/validators').deploy;
 const signAndSubmit = require('../lib/signAndSubmit');
 const { prepend0x } = require('../lib/util');
 
+/**
+ * Deploy a smart contract
+ * @param {object} deployParams
+ * @param {WalletProvider} walletProvider
+ * @param {Web3} web3
+ * @return {Promise}
+ */
 exports = module.exports = async function deploy(
-  dataFileContent,
+  deployParams,
   walletProvider,
   web3,
 ) {
-  if (!validator(dataFileContent)) {
+  if (!validator(deployParams)) {
     throw new Error(JSON.stringify(validator.errors));
   }
 
@@ -19,7 +26,7 @@ exports = module.exports = async function deploy(
     gasPrice,
     gasLimit,
     parameters = [],
-  } = dataFileContent;
+  } = deployParams;
 
   const bytecode = prepend0x(rawBytecode);
 
