@@ -28,3 +28,13 @@ test('Test LocaEthlet Execute Throws Invalid Action', async () => {
     );
   }
 });
+
+test('Test LocaEthlet Execute Throws Wrong Data Type', async () => {
+  expect.assertions(1);
+  const ethlet = createEthlet();
+  try {
+    await ethlet.execute('deploy', () => {});
+  } catch (e) {
+    return expect(e.message).toBe('Expect data to be typeof string or object');
+  }
+});

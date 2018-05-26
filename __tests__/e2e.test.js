@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const LocaEthlet = require('../index');
 const keystore = path.resolve('./data/keystore.example');
 const password = path.resolve('./data/password.example');
@@ -26,6 +27,7 @@ test('Test Init LocaEthlet Return Web3 Instance', async () => {
 
 test('Test LocaEthlet Deploy Successful', async () => {
   const ethlet = createEthlet();
+  // Test execute accept data file
   const result = await ethlet.execute('deploy', deployData);
   // Verify the address of the deployed contract
   expect(result.contractAddress).toBe(
@@ -36,7 +38,9 @@ test('Test LocaEthlet Deploy Successful', async () => {
 // This test interacts with the contract deployed in the previous test
 test('Test LocaEthlet Interact Successful', async () => {
   const ethlet = createEthlet();
-  const result = await ethlet.execute('interact', interactData);
+  // Test execute accept data object
+  const params = JSON.parse(fs.readFileSync(interactData, 'utf8'));
+  const result = await ethlet.execute('interact', params);
   expect(result.blockHash).toBeTruthy();
 });
 
