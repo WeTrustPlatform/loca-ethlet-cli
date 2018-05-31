@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "coverage": "coveralls < coverage/lcov.info",
-    "test": "jest ./lib/wallet-provider --runInBand",
+    "test": "jest --runInBand",
     "lint": "eslint **/*.js --fix",
     "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
