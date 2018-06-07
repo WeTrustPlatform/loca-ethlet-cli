@@ -31,7 +31,7 @@ exports = module.exports = async function interact(
   const contractInstance = new web3.eth.Contract(abi, contractAddress);
   const data = contractInstance.methods[methodName](...parameters).encodeABI();
 
-  return signAndSubmit(
+  const interactResult = await signAndSubmit(
     {
       to: contractAddress,
       data,
@@ -43,4 +43,6 @@ exports = module.exports = async function interact(
     walletProvider,
     web3,
   );
+
+  return interactResult;
 };

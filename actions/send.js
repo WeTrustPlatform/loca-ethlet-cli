@@ -19,7 +19,7 @@ exports = module.exports = async function send(
 
   const { chainId, value, gasPrice, gasLimit, to, data } = sendParams;
 
-  return signAndSubmit(
+  const sendResult = await signAndSubmit(
     {
       to,
       value,
@@ -31,4 +31,6 @@ exports = module.exports = async function send(
     walletProvider,
     web3,
   );
+
+  return sendResult;
 };
