@@ -38,7 +38,7 @@ exports = module.exports = async function deploy(
     })
     .encodeABI();
 
-  return signAndSubmit(
+  const deployResult = await signAndSubmit(
     {
       data,
       value,
@@ -49,4 +49,6 @@ exports = module.exports = async function deploy(
     walletProvider,
     web3,
   );
+
+  return deployResult;
 };
