@@ -1,6 +1,6 @@
 {
   "name": "loca-ethlet-cli",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Scripts for interacting/deploying smart contracts from local",
   "main": "index.js",
   "scripts": {
