@@ -9,6 +9,11 @@ const createServer = () => {
             '0x275ef35f55525049678090f9e32d16cbcca06f07dc4f51e297ed39a47d901981',
           balance: '0x4563918244f40000',
         },
+        {
+          secretKey:
+            '0x08216419c2c2e9bfaf5f88885cbe89eabb1671cae4a09311c7ddcec77e1bfb77',
+          balance: '0x4563918244f40000',
+        },
       ],
     });
 
