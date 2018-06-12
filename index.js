@@ -79,3 +79,6 @@ actionModules.forEach(f => {
 });
 
 exports = module.exports = Ethlet;
+
+// Expose to ES6 downstream
+module.exports.default = Ethlet;
