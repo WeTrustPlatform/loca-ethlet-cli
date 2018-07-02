@@ -12,8 +12,6 @@ Local Ethereum Wallet for Crazy People
 ```
 yarn global add loca-ethlet-cli --prefix /usr/local
 ```
-Note: If you run into `error Cannot create "/usr/local/bin/loca-ethlet" due to insufficient permissions.`
-Please use `sudo yarn global add loca-ethlet-cli --prefix /usr/local`
 
 - You can also use npm which comes with nodejs https://nodejs.org/en/
 ```
@@ -106,6 +104,13 @@ List of [the example datafiles.](https://github.com/WeTrustPlatform/loca-ethlet-
 ```
 loca-ethlet -d transferTRST.json.example -k keystore.example -p password.example -a interact -r https://mainnet.infura.io/{your_infura_token}
 ```
+
+## Troubleshooting
+- Issue `error Cannot create "/usr/local/bin/loca-ethlet" due to insufficient permissions.`
+  - Install as root `sudo yarn global add loca-ethlet-cli --prefix /usr/local`
+- Issue `Error: Cannot find module 'babel-runtime/core-js/get-iterator'`
+  - Install babel-runtime `npm install -g babel-runtime`
+
 
 ## To Be Improved in a Near Future
 - Even though the datafile flag supports all the complex use cases, it's a hassle for simple day-to-day use such as transferring ERC20 tokens. Introducing a new flag, let's say template, which only requires users to input smart contract address, method's name, and parameters.  The ABI can be fetched on etherscan.
