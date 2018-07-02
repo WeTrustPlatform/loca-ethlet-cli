@@ -8,12 +8,14 @@ Local Ethereum Wallet for Crazy People
 
 ## Installation
 
-If you don't have `yarn`, I recommend you give it a try https://yarnpkg.com/lang/en/
+- If you don't have `yarn`, I recommend you give it a try https://yarnpkg.com/lang/en/
 ```
 yarn global add loca-ethlet-cli --prefix /usr/local
 ```
+Note: If you run into `error Cannot create "/usr/local/bin/loca-ethlet" due to insufficient permissions.`
+Please use `sudo yarn global add loca-ethlet-cli --prefix /usr/local`
 
-You can also use npm which comes with nodejs https://nodejs.org/en/
+- You can also use npm which comes with nodejs https://nodejs.org/en/
 ```
 npm install -g loca-ethlet-cli
 ```
