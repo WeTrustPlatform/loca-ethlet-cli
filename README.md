@@ -13,12 +13,6 @@ Local Ethereum Wallet for Crazy People
 yarn global add loca-ethlet-cli --prefix /usr/local
 ```
 
-- You can also use npm which comes with nodejs https://nodejs.org/en/
-```
-npm install -g loca-ethlet-cli
-```
-
-
 ## Usage
 
 This tool can be used in two ways: (1) As a command line or (2) As a node_module
@@ -109,7 +103,7 @@ loca-ethlet -d transferTRST.json.example -k keystore.example -p password.example
 - Issue `error Cannot create "/usr/local/bin/loca-ethlet" due to insufficient permissions.`
   - Install as root `sudo yarn global add loca-ethlet-cli --prefix /usr/local`
 - Issue `Error: Cannot find module 'babel-runtime/core-js/get-iterator'`
-  - Install babel-runtime `npm install -g babel-runtime`
+  - Known issue https://github.com/WeTrustPlatform/loca-ethlet-cli/issues/8
 
 
 ## To Be Improved in a Near Future
